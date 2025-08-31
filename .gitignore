@@ -1,2 +1,14 @@
 bin/Debug/
 obj/Debug/
+.idea/
+.vs/
+*.cache
+*.log
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.env

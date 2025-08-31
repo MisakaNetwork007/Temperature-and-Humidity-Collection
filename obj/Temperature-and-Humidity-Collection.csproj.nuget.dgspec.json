@@ -65,6 +65,14 @@
               "target": "Package",
               "version": "[9.0.8, )"
             },
+            "ScottPlot": {
+              "target": "Package",
+              "version": "[5.0.56, )"
+            },
+            "ScottPlot.WinForms": {
+              "target": "Package",
+              "version": "[5.0.56, )"
+            },
             "System.IO.Ports": {
               "target": "Package",
               "version": "[9.0.8, )"

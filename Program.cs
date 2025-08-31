@@ -25,7 +25,18 @@ namespace Temperature_and_Humidity_Collection
             //t.DeleteData();
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+
+            using(LoginForm loginForm = new LoginForm())
+            {
+                if(loginForm.ShowDialog() == DialogResult.OK)
+                {
+                    Application.Run(new MainForm());
+                }else
+                {
+                    Application.Exit();
+                }
+            }
+            
         }
     }
 }
