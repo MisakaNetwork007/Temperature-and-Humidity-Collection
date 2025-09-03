@@ -51,8 +51,8 @@ namespace Temperature_and_Humidity_Collection
                 StaticData.currentUser = user;
             }
 
-            var reslut = MessageBox.Show("登陆成功", "登录信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            if (reslut == DialogResult.OK)
+            var result = MessageBox.Show("登陆成功", "登录信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (result == DialogResult.OK)
             {
                 this.DialogResult = DialogResult.OK;
                 this.Close();

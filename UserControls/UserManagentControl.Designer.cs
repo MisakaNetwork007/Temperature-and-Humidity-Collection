@@ -74,6 +74,7 @@
             button3.TabIndex = 2;
             button3.Text = "修改用户";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += UpdateUser_Click;
             // 
             // button2
             // 
@@ -86,6 +87,7 @@
             button2.TabIndex = 1;
             button2.Text = "删除用户";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += DeleteUser_Click;
             // 
             // button1
             // 
@@ -98,10 +100,12 @@
             button1.TabIndex = 0;
             button1.Text = "增加用户";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += AddUser_Click;
             // 
             // UserLayoutPanel
             // 
             UserLayoutPanel.AutoSize = true;
+            UserLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
             UserLayoutPanel.ColumnCount = 4;
             UserLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
             UserLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 300F));
@@ -114,17 +118,9 @@
             UserLayoutPanel.Dock = DockStyle.Top;
             UserLayoutPanel.Location = new Point(0, 0);
             UserLayoutPanel.Name = "UserLayoutPanel";
-            UserLayoutPanel.RowCount = 9;
+            UserLayoutPanel.RowCount = 1;
             UserLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            UserLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            UserLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            UserLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            UserLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            UserLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            UserLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            UserLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            UserLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            UserLayoutPanel.Size = new Size(974, 460);
+            UserLayoutPanel.Size = new Size(974, 62);
             UserLayoutPanel.TabIndex = 0;
             // 
             // label8
@@ -132,10 +128,10 @@
             label8.AutoSize = true;
             label8.Dock = DockStyle.Fill;
             label8.Font = new Font("Microsoft YaHei UI", 12F);
-            label8.Location = new Point(703, 3);
+            label8.Location = new Point(707, 4);
             label8.Margin = new Padding(3);
             label8.Name = "label8";
-            label8.Size = new Size(268, 54);
+            label8.Size = new Size(263, 54);
             label8.TabIndex = 3;
             label8.Text = "用户身份";
             label8.TextAlign = ContentAlignment.MiddleCenter;
@@ -145,7 +141,7 @@
             label7.AutoSize = true;
             label7.Dock = DockStyle.Fill;
             label7.Font = new Font("Microsoft YaHei UI", 12F);
-            label7.Location = new Point(453, 3);
+            label7.Location = new Point(456, 4);
             label7.Margin = new Padding(3);
             label7.Name = "label7";
             label7.Size = new Size(244, 54);
@@ -158,7 +154,7 @@
             label6.AutoSize = true;
             label6.Dock = DockStyle.Fill;
             label6.Font = new Font("Microsoft YaHei UI", 12F);
-            label6.Location = new Point(153, 3);
+            label6.Location = new Point(155, 4);
             label6.Margin = new Padding(3);
             label6.Name = "label6";
             label6.Size = new Size(294, 54);
@@ -171,7 +167,7 @@
             label5.AutoSize = true;
             label5.Dock = DockStyle.Fill;
             label5.Font = new Font("Microsoft YaHei UI", 12F);
-            label5.Location = new Point(3, 3);
+            label5.Location = new Point(4, 4);
             label5.Margin = new Padding(3);
             label5.Name = "label5";
             label5.Size = new Size(144, 54);

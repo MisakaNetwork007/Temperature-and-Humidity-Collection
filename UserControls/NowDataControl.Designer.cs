@@ -32,22 +32,22 @@
             groupBox4 = new GroupBox();
             label17 = new Label();
             label18 = new Label();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
+            HumidityTextBox4 = new TextBox();
+            TemperatureTextBox4 = new TextBox();
             label19 = new Label();
             label20 = new Label();
             groupBox3 = new GroupBox();
             label13 = new Label();
             label14 = new Label();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
+            HumidityTextBox3 = new TextBox();
+            TemperatureTextBox3 = new TextBox();
             label15 = new Label();
             label16 = new Label();
             groupBox2 = new GroupBox();
             label9 = new Label();
             label10 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            HumidityTextBox2 = new TextBox();
+            TemperatureTextBox2 = new TextBox();
             label11 = new Label();
             label12 = new Label();
             groupBox1 = new GroupBox();
@@ -85,8 +85,8 @@
             // 
             groupBox4.Controls.Add(label17);
             groupBox4.Controls.Add(label18);
-            groupBox4.Controls.Add(textBox5);
-            groupBox4.Controls.Add(textBox6);
+            groupBox4.Controls.Add(HumidityTextBox4);
+            groupBox4.Controls.Add(TemperatureTextBox4);
             groupBox4.Controls.Add(label19);
             groupBox4.Controls.Add(label20);
             groupBox4.Dock = DockStyle.Fill;
@@ -119,23 +119,23 @@
             label18.TabIndex = 4;
             label18.Text = "℃";
             // 
-            // textBox5
+            // HumidityTextBox4
             // 
-            textBox5.Font = new Font("Microsoft YaHei UI", 16F);
-            textBox5.Location = new Point(224, 123);
-            textBox5.Name = "textBox5";
-            textBox5.ReadOnly = true;
-            textBox5.Size = new Size(132, 35);
-            textBox5.TabIndex = 3;
+            HumidityTextBox4.Font = new Font("Microsoft YaHei UI", 16F);
+            HumidityTextBox4.Location = new Point(224, 123);
+            HumidityTextBox4.Name = "HumidityTextBox4";
+            HumidityTextBox4.ReadOnly = true;
+            HumidityTextBox4.Size = new Size(132, 35);
+            HumidityTextBox4.TabIndex = 3;
             // 
-            // textBox6
+            // TemperatureTextBox4
             // 
-            textBox6.Font = new Font("Microsoft YaHei UI", 16F);
-            textBox6.Location = new Point(224, 59);
-            textBox6.Name = "textBox6";
-            textBox6.ReadOnly = true;
-            textBox6.Size = new Size(132, 35);
-            textBox6.TabIndex = 2;
+            TemperatureTextBox4.Font = new Font("Microsoft YaHei UI", 16F);
+            TemperatureTextBox4.Location = new Point(224, 59);
+            TemperatureTextBox4.Name = "TemperatureTextBox4";
+            TemperatureTextBox4.ReadOnly = true;
+            TemperatureTextBox4.Size = new Size(132, 35);
+            TemperatureTextBox4.TabIndex = 2;
             // 
             // label19
             // 
@@ -161,8 +161,8 @@
             // 
             groupBox3.Controls.Add(label13);
             groupBox3.Controls.Add(label14);
-            groupBox3.Controls.Add(textBox3);
-            groupBox3.Controls.Add(textBox4);
+            groupBox3.Controls.Add(HumidityTextBox3);
+            groupBox3.Controls.Add(TemperatureTextBox3);
             groupBox3.Controls.Add(label15);
             groupBox3.Controls.Add(label16);
             groupBox3.Dock = DockStyle.Fill;
@@ -195,23 +195,23 @@
             label14.TabIndex = 4;
             label14.Text = "℃";
             // 
-            // textBox3
+            // HumidityTextBox3
             // 
-            textBox3.Font = new Font("Microsoft YaHei UI", 16F);
-            textBox3.Location = new Point(224, 123);
-            textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
-            textBox3.Size = new Size(132, 35);
-            textBox3.TabIndex = 3;
+            HumidityTextBox3.Font = new Font("Microsoft YaHei UI", 16F);
+            HumidityTextBox3.Location = new Point(224, 123);
+            HumidityTextBox3.Name = "HumidityTextBox3";
+            HumidityTextBox3.ReadOnly = true;
+            HumidityTextBox3.Size = new Size(132, 35);
+            HumidityTextBox3.TabIndex = 3;
             // 
-            // textBox4
+            // TemperatureTextBox3
             // 
-            textBox4.Font = new Font("Microsoft YaHei UI", 16F);
-            textBox4.Location = new Point(224, 59);
-            textBox4.Name = "textBox4";
-            textBox4.ReadOnly = true;
-            textBox4.Size = new Size(132, 35);
-            textBox4.TabIndex = 2;
+            TemperatureTextBox3.Font = new Font("Microsoft YaHei UI", 16F);
+            TemperatureTextBox3.Location = new Point(224, 59);
+            TemperatureTextBox3.Name = "TemperatureTextBox3";
+            TemperatureTextBox3.ReadOnly = true;
+            TemperatureTextBox3.Size = new Size(132, 35);
+            TemperatureTextBox3.TabIndex = 2;
             // 
             // label15
             // 
@@ -237,8 +237,8 @@
             // 
             groupBox2.Controls.Add(label9);
             groupBox2.Controls.Add(label10);
-            groupBox2.Controls.Add(textBox1);
-            groupBox2.Controls.Add(textBox2);
+            groupBox2.Controls.Add(HumidityTextBox2);
+            groupBox2.Controls.Add(TemperatureTextBox2);
             groupBox2.Controls.Add(label11);
             groupBox2.Controls.Add(label12);
             groupBox2.Dock = DockStyle.Fill;
@@ -271,23 +271,23 @@
             label10.TabIndex = 4;
             label10.Text = "℃";
             // 
-            // textBox1
+            // HumidityTextBox2
             // 
-            textBox1.Font = new Font("Microsoft YaHei UI", 16F);
-            textBox1.Location = new Point(224, 123);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(132, 35);
-            textBox1.TabIndex = 3;
+            HumidityTextBox2.Font = new Font("Microsoft YaHei UI", 16F);
+            HumidityTextBox2.Location = new Point(224, 123);
+            HumidityTextBox2.Name = "HumidityTextBox2";
+            HumidityTextBox2.ReadOnly = true;
+            HumidityTextBox2.Size = new Size(132, 35);
+            HumidityTextBox2.TabIndex = 3;
             // 
-            // textBox2
+            // TemperatureTextBox2
             // 
-            textBox2.Font = new Font("Microsoft YaHei UI", 16F);
-            textBox2.Location = new Point(224, 59);
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(132, 35);
-            textBox2.TabIndex = 2;
+            TemperatureTextBox2.Font = new Font("Microsoft YaHei UI", 16F);
+            TemperatureTextBox2.Location = new Point(224, 59);
+            TemperatureTextBox2.Name = "TemperatureTextBox2";
+            TemperatureTextBox2.ReadOnly = true;
+            TemperatureTextBox2.Size = new Size(132, 35);
+            TemperatureTextBox2.TabIndex = 2;
             // 
             // label11
             // 
@@ -411,22 +411,22 @@
         private GroupBox groupBox4;
         private Label label17;
         private Label label18;
-        private TextBox textBox5;
-        private TextBox textBox6;
+        private TextBox HumidityTextBox4;
+        private TextBox TemperatureTextBox4;
         private Label label19;
         private Label label20;
         private GroupBox groupBox3;
         private Label label13;
         private Label label14;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private TextBox HumidityTextBox3;
+        private TextBox TemperatureTextBox3;
         private Label label15;
         private Label label16;
         private GroupBox groupBox2;
         private Label label9;
         private Label label10;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox HumidityTextBox2;
+        private TextBox TemperatureTextBox2;
         private Label label11;
         private Label label12;
         private GroupBox groupBox1;

@@ -119,6 +119,7 @@
             button2.TabIndex = 4;
             button2.Text = "取消";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += Cancel_Click;
             // 
             // button1
             // 
@@ -132,6 +133,7 @@
             button1.TabIndex = 3;
             button1.Text = "确定";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += Sure_Click;
             // 
             // label7
             // 

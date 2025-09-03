@@ -60,18 +60,18 @@
             CurTimeLabel.AutoSize = true;
             CurTimeLabel.Font = new Font("Microsoft YaHei UI", 16F, FontStyle.Bold);
             CurTimeLabel.ForeColor = SystemColors.ControlLightLight;
-            CurTimeLabel.Location = new Point(1061, 19);
+            CurTimeLabel.Location = new Point(1061, 9);
             CurTimeLabel.Name = "CurTimeLabel";
-            CurTimeLabel.Size = new Size(191, 60);
+            CurTimeLabel.Size = new Size(191, 90);
             CurTimeLabel.TabIndex = 3;
-            CurTimeLabel.Text = "2025年 8月 28号\r\n21：25";
+            CurTimeLabel.Text = "2025年 8月 28号\r\n星期一\r\n21：25";
             CurTimeLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // IdentityLabel
             // 
             IdentityLabel.AutoSize = true;
             IdentityLabel.Font = new Font("Microsoft YaHei UI", 16F);
-            IdentityLabel.Location = new Point(851, 49);
+            IdentityLabel.Location = new Point(752, 49);
             IdentityLabel.Name = "IdentityLabel";
             IdentityLabel.RightToLeft = RightToLeft.No;
             IdentityLabel.Size = new Size(145, 30);
@@ -82,7 +82,7 @@
             // 
             CurUserLabel.AutoSize = true;
             CurUserLabel.Font = new Font("Microsoft YaHei UI", 16F);
-            CurUserLabel.Location = new Point(851, 17);
+            CurUserLabel.Location = new Point(752, 17);
             CurUserLabel.Name = "CurUserLabel";
             CurUserLabel.Size = new Size(167, 30);
             CurUserLabel.TabIndex = 1;
@@ -125,6 +125,7 @@
             DataMonitoringButton.TabIndex = 0;
             DataMonitoringButton.Text = "数据监控";
             DataMonitoringButton.UseVisualStyleBackColor = false;
+            DataMonitoringButton.Click += OnShowData_Click;
             // 
             // HistoricalTrendButton
             // 
@@ -138,6 +139,7 @@
             HistoricalTrendButton.TabIndex = 1;
             HistoricalTrendButton.Text = "历史趋势";
             HistoricalTrendButton.UseVisualStyleBackColor = false;
+            HistoricalTrendButton.Click += OnShowHistorical_Click;
             // 
             // DisplayLogButton
             // 
@@ -151,6 +153,7 @@
             DisplayLogButton.TabIndex = 2;
             DisplayLogButton.Text = "日志显示";
             DisplayLogButton.UseVisualStyleBackColor = false;
+            DisplayLogButton.Click += OnShowLog_Click;
             // 
             // UserManagementButton
             // 
@@ -164,6 +167,7 @@
             UserManagementButton.TabIndex = 3;
             UserManagementButton.Text = "用户管理";
             UserManagementButton.UseVisualStyleBackColor = false;
+            UserManagementButton.Click += OnShowUserManagent_Click;
             // 
             // MainForm
             // 
@@ -175,6 +179,7 @@
             MaximizeBox = false;
             Name = "MainForm";
             Text = "温湿度采集系统";
+            FormClosed += OnFormClosed;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             flowLayoutPanel1.ResumeLayout(false);

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             UMPopUpWindow = new GroupBox();
+            IdentityTextBox = new TextBox();
             UIDComboBox = new ComboBox();
             label1 = new Label();
             NameTextBox = new TextBox();
@@ -38,7 +39,6 @@
             button1 = new Button();
             label7 = new Label();
             label5 = new Label();
-            IdentityTextBox = new TextBox();
             UMPopUpWindow.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,6 +62,14 @@
             UMPopUpWindow.TabStop = false;
             UMPopUpWindow.Text = "删除用户";
             // 
+            // IdentityTextBox
+            // 
+            IdentityTextBox.Location = new Point(144, 217);
+            IdentityTextBox.Name = "IdentityTextBox";
+            IdentityTextBox.ReadOnly = true;
+            IdentityTextBox.Size = new Size(183, 35);
+            IdentityTextBox.TabIndex = 12;
+            // 
             // UIDComboBox
             // 
             UIDComboBox.Font = new Font("Microsoft YaHei UI", 16F);
@@ -70,6 +78,8 @@
             UIDComboBox.Name = "UIDComboBox";
             UIDComboBox.Size = new Size(183, 36);
             UIDComboBox.TabIndex = 11;
+            UIDComboBox.SelectedIndexChanged += UIDChange_Select;
+            UIDComboBox.TextUpdate += UIDChange_Select;
             // 
             // label1
             // 
@@ -122,6 +132,7 @@
             button2.TabIndex = 4;
             button2.Text = "取消";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += Cancel_Click;
             // 
             // button1
             // 
@@ -135,6 +146,7 @@
             button1.TabIndex = 3;
             button1.Text = "确定";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += Sure_Click;
             // 
             // label7
             // 
@@ -155,14 +167,6 @@
             label5.Size = new Size(42, 21);
             label5.TabIndex = 0;
             label5.Text = "账号";
-            // 
-            // IdentityTextBox
-            // 
-            IdentityTextBox.Location = new Point(144, 217);
-            IdentityTextBox.Name = "IdentityTextBox";
-            IdentityTextBox.ReadOnly = true;
-            IdentityTextBox.Size = new Size(183, 35);
-            IdentityTextBox.TabIndex = 12;
             // 
             // DeleteUserControl
             // 

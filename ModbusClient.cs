@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
@@ -12,6 +13,16 @@ namespace Temperature_and_Humidity_Collection
     {
         RTU,
         TCP
+    }
+
+    /// <summary>
+    /// 字节顺序枚举
+    /// </summary>
+    public enum ByteOrder
+    {
+        BigEndian,          // ABCD (Modbus标准)
+        LittleEndian,       // CDAB
+        BigEndianByteSwap   // BADC
     }
 
     public enum ModbusFunctionCode : byte
@@ -251,6 +262,9 @@ namespace Temperature_and_Humidity_Collection
         #endregion
 
         #region 公共Modbus方法
+
+        public void SetSlaveId(byte slaveId) => _slaveId = slaveId;
+
         /// <summary>
         /// 读取线圈
         /// </summary>
@@ -510,6 +524,58 @@ namespace Temperature_and_Humidity_Collection
                 throw new ModbusException(0xFF, "写入多个寄存器响应不匹配");
             }
         }
+
+        /// <summary>
+        /// 将两个16位寄存器转换为32位浮点数
+        /// </summary>
+        /// <param name="registers">包含两个16位寄存器的数组</param>
+        /// <param name="byteOrder">字节顺序</param>
+        /// <returns>转换后的浮点数</returns>
+        public static float ConvertRegistersToFloat(ushort[] registers, ByteOrder byteOrder)
+        {
+            if (registers.Length < 2)
+                throw new ArgumentException("需要至少两个寄存器来转换浮点数");
+
+            // 将两个16位值转换为4个字节
+            byte[] bytes = new byte[4];
+
+            switch (byteOrder)
+            {
+                case ByteOrder.BigEndian:
+                    // ABCD 顺序 (Modbus标准)
+                    bytes[0] = (byte)(registers[0] >> 8); // 高字节
+                    bytes[1] = (byte)(registers[0] & 0xFF); // 低字节
+                    bytes[2] = (byte)(registers[1] >> 8);
+                    bytes[3] = (byte)(registers[1] & 0xFF);
+                    return BinaryPrimitives.ReadSingleBigEndian(bytes);
+
+                case ByteOrder.LittleEndian:
+                    // CDAB 顺序
+                    bytes[0] = (byte)(registers[1] & 0xFF);
+                    bytes[1] = (byte)(registers[1] >> 8);
+                    bytes[2] = (byte)(registers[0] & 0xFF);
+                    bytes[3] = (byte)(registers[0] >> 8);
+                    return BinaryPrimitives.ReadSingleLittleEndian(bytes);
+
+                case ByteOrder.BigEndianByteSwap:
+                    // BADC 顺序
+                    bytes[0] = (byte)(registers[0] & 0xFF);
+                    bytes[1] = (byte)(registers[0] >> 8);
+                    bytes[2] = (byte)(registers[1] & 0xFF);
+                    bytes[3] = (byte)(registers[1] >> 8);
+                    break;
+
+                default:
+                    throw new ArgumentException("不支持的字节顺序");
+            }
+            if(BitConverter.IsLittleEndian)
+            {
+                Array.Reverse(bytes);
+            }
+
+            // 将字节转换为float
+            return BitConverter.ToSingle(bytes, 0);
+        }
         #endregion
 
         #region IDisposable实现
@@ -566,4 +632,6 @@ namespace Temperature_and_Humidity_Collection
             return crc;
         }
     }
+
+    
 }

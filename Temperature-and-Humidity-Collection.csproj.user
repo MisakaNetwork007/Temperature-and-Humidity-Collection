@@ -28,5 +28,8 @@
     <Compile Update="UserControls\UserManagentControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserOperationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -26,12 +26,13 @@ namespace Temperature_and_Humidity_Collection
 
             ApplicationConfiguration.Initialize();
 
-            using(LoginForm loginForm = new LoginForm())
+            using (LoginForm loginForm = new LoginForm())
             {
                 if(loginForm.ShowDialog() == DialogResult.OK)
                 {
                     Application.Run(new MainForm());
-                }else
+                }
+                else
                 {
                     Application.Exit();
                 }

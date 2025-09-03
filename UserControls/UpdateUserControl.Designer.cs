@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             UMPopUpWindow = new GroupBox();
+            UIDComboBox = new ComboBox();
+            label1 = new Label();
             IdentityComboBox = new ComboBox();
             NameTextBox = new TextBox();
             PasswordTextBox = new TextBox();
@@ -39,8 +41,6 @@
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
-            label1 = new Label();
-            UIDComboBox = new ComboBox();
             UMPopUpWindow.SuspendLayout();
             SuspendLayout();
             // 
@@ -65,6 +65,27 @@
             UMPopUpWindow.TabIndex = 3;
             UMPopUpWindow.TabStop = false;
             UMPopUpWindow.Text = "更新用户";
+            // 
+            // UIDComboBox
+            // 
+            UIDComboBox.Font = new Font("Microsoft YaHei UI", 16F);
+            UIDComboBox.FormattingEnabled = true;
+            UIDComboBox.Location = new Point(144, 45);
+            UIDComboBox.Name = "UIDComboBox";
+            UIDComboBox.Size = new Size(183, 36);
+            UIDComboBox.TabIndex = 11;
+            UIDComboBox.SelectedIndexChanged += UID_Select;
+            UIDComboBox.TextUpdate += UID_Select;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft YaHei UI", 12F);
+            label1.Location = new Point(73, 53);
+            label1.Name = "label1";
+            label1.Size = new Size(59, 21);
+            label1.TabIndex = 10;
+            label1.Text = "用户ID";
             // 
             // IdentityComboBox
             // 
@@ -123,6 +144,7 @@
             button2.TabIndex = 4;
             button2.Text = "取消";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += Cancel_Click;
             // 
             // button1
             // 
@@ -136,6 +158,7 @@
             button1.TabIndex = 3;
             button1.Text = "确定";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += Sure_Click;
             // 
             // label7
             // 
@@ -166,25 +189,6 @@
             label5.Size = new Size(42, 21);
             label5.TabIndex = 0;
             label5.Text = "账号";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Microsoft YaHei UI", 12F);
-            label1.Location = new Point(73, 53);
-            label1.Name = "label1";
-            label1.Size = new Size(59, 21);
-            label1.TabIndex = 10;
-            label1.Text = "用户ID";
-            // 
-            // UIDComboBox
-            // 
-            UIDComboBox.Font = new Font("Microsoft YaHei UI", 16F);
-            UIDComboBox.FormattingEnabled = true;
-            UIDComboBox.Location = new Point(144, 45);
-            UIDComboBox.Name = "UIDComboBox";
-            UIDComboBox.Size = new Size(183, 36);
-            UIDComboBox.TabIndex = 11;
             // 
             // UpdateUserControl
             // 
