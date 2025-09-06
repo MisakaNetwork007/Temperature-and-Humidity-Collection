@@ -44,6 +44,7 @@ namespace Temperature_and_Humidity_Collection
     [Table("LoginInformationTable")]
     public class LoginInformation
     {
+        public int id;                  //自增主键
         public int uid;                 //账户uid
         public DateTime datetime;       //时间
         public bool login_or_logout;    //登录 = 1 ， 登出 = 0

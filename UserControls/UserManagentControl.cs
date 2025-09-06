@@ -103,7 +103,7 @@ namespace Temperature_and_Humidity_Collection.UserControls
                     Status = false,
                     ErrorCode = (short)ErrorCode.AccessLevelError
                 };
-                LogManagent.Instance.UploadOperationLog(o);
+                LogManagement.Instance.UploadOperationLog(o);
 
                 MessageBox.Show("权限不足！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -128,7 +128,7 @@ namespace Temperature_and_Humidity_Collection.UserControls
                     Status = false,
                     ErrorCode = (short)ErrorCode.AccessLevelError
                 };
-                LogManagent.Instance.UploadOperationLog(o);
+                LogManagement.Instance.UploadOperationLog(o);
 
                 MessageBox.Show("权限不足！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -153,7 +153,7 @@ namespace Temperature_and_Humidity_Collection.UserControls
                     Status = false,
                     ErrorCode = (short)ErrorCode.AccessLevelError
                 };
-                LogManagent.Instance.UploadOperationLog(o);
+                LogManagement.Instance.UploadOperationLog(o);
 
                 MessageBox.Show("权限不足！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

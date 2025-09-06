@@ -75,7 +75,7 @@ namespace Temperature_and_Humidity_Collection.UserControls
                             PUserAccessLevel = user.UserAccessLevel,
                             ErrorCode = (short)ErrorCode.DBSaveChangesError
                         };
-                        LogManagent.Instance.UploadOperationLog(o);
+                        LogManagement.Instance.UploadOperationLog(o);
 
                         MessageBox.Show("删除失败！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -93,7 +93,7 @@ namespace Temperature_and_Humidity_Collection.UserControls
                             PUserAccessLevel = user.UserAccessLevel,
                             ErrorCode = (short)ErrorCode.None
                         };
-                        LogManagent.Instance.UploadOperationLog(o);
+                        LogManagement.Instance.UploadOperationLog(o);
 
                         var result = MessageBox.Show("删除成功！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (result == DialogResult.OK)

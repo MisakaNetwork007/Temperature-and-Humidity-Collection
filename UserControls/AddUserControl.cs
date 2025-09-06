@@ -82,7 +82,7 @@ namespace Temperature_and_Humidity_Collection.UserControls
                         PUserAccessLevel = user.UserAccessLevel,
                         ErrorCode = (short)ErrorCode.PAccountError
                     };
-                    LogManagent.Instance.UploadOperationLog(o);
+                    LogManagement.Instance.UploadOperationLog(o);
 
                     MessageBox.Show("账号已存在！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -103,7 +103,7 @@ namespace Temperature_and_Humidity_Collection.UserControls
                         PUserAccessLevel = user.UserAccessLevel,
                         ErrorCode = (short)ErrorCode.DBSaveChangesError
                     };
-                    LogManagent.Instance.UploadOperationLog(o);
+                    LogManagement.Instance.UploadOperationLog(o);
 
                     MessageBox.Show("保存失败！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }else
@@ -120,7 +120,7 @@ namespace Temperature_and_Humidity_Collection.UserControls
                         PUserAccessLevel = user.UserAccessLevel,
                         ErrorCode = (short)ErrorCode.None
                     };
-                    LogManagent.Instance.UploadOperationLog(o);
+                    LogManagement.Instance.UploadOperationLog(o);
 
                     var result = MessageBox.Show("保存成功！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if(result == DialogResult.OK)

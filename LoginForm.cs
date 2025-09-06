@@ -88,8 +88,8 @@ namespace Temperature_and_Humidity_Collection
                 Status = true,
                 ErrorCode = (short)ErrorCode.None
             };
-            LogManagent.Instance.UploadLoginInformation(l);
-            LogManagent.Instance.UploadOperationLog(o);
+            LogManagement.Instance.UploadLoginInformation(l);
+            LogManagement.Instance.UploadOperationLog(o);
 
             var result = MessageBox.Show("登陆成功", "登录信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (result == DialogResult.OK)

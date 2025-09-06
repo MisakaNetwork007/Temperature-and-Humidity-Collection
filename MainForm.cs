@@ -46,7 +46,7 @@ namespace Temperature_and_Humidity_Collection
                 Status = true,
                 ErrorCode = (short)ErrorCode.None
             };
-            LogManagent.Instance.UploadOperationLog(o);
+            LogManagement.Instance.UploadOperationLog(o);
         }
 
         private void InitializeTimer()
@@ -91,8 +91,8 @@ namespace Temperature_and_Humidity_Collection
                 Status = true,
                 ErrorCode = (short)ErrorCode.None
             };
-            LogManagent.Instance.UploadLoginInformation(l);
-            LogManagent.Instance.UploadOperationLog(o);
+            LogManagement.Instance.UploadLoginInformation(l);
+            LogManagement.Instance.UploadOperationLog(o);
 
             StaticData.uiSyncContext = null;
             
@@ -134,7 +134,7 @@ namespace Temperature_and_Humidity_Collection
                 Status = true,
                 ErrorCode = (short)ErrorCode.None
             };
-            LogManagent.Instance.UploadOperationLog(o);
+            LogManagement.Instance.UploadOperationLog(o);
         }
 
         private void OnShowHistorical_Click(object sender, EventArgs e)
@@ -172,7 +172,7 @@ namespace Temperature_and_Humidity_Collection
                 Status = true,
                 ErrorCode = (short)ErrorCode.None
             };
-            LogManagent.Instance.UploadOperationLog(o);
+            LogManagement.Instance.UploadOperationLog(o);
         }
 
         private void OnShowLog_Click(object sender, EventArgs e)
