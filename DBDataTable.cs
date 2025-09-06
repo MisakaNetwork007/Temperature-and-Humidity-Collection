@@ -46,7 +46,7 @@ namespace Temperature_and_Humidity_Collection
     {
         public int uid;                 //账户uid
         public DateTime datetime;       //时间
-        public bool login_or_logout;    //登录 = 0 ， 登出 = 1
+        public bool login_or_logout;    //登录 = 1 ， 登出 = 0
         public bool status;             //状态，失败 = 0，成功 = 1
         public short error_code;        //错误码
     }

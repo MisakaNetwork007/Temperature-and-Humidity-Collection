@@ -26,7 +26,7 @@ public partial class MyDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=喵内;Initial Catalog=Temperature-and-Humidity-Collection;Integrated Security=True;Encrypt=False;");
+        => optionsBuilder.UseSqlServer("Data Source=喵内;Initial Catalog=Temperature-and-Humidity-Collection;Integrated Security=True;Encrypt=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -37,22 +37,25 @@ public partial class MyDbContext : DbContext
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Datetime).HasColumnName("datetime");
             entity.Property(e => e.Humidity).HasColumnName("humidity");
+            entity.Property(e => e.SlaveAddress)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("slave_address");
             entity.Property(e => e.Temperature).HasColumnName("temperature");
         });
 
         modelBuilder.Entity<LoginInformationTable>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("LoginInformationTable");
+            entity.ToTable("LoginInformationTable");
 
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Datetime).HasColumnName("datetime");
             entity.Property(e => e.ErrorCode).HasColumnName("error_code");
             entity.Property(e => e.LoginOrLogout).HasColumnName("login_or_logout");
             entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.Uid).HasColumnName("uid");
 
-            entity.HasOne(d => d.UidNavigation).WithMany()
+            entity.HasOne(d => d.UidNavigation).WithMany(p => p.LoginInformationTables)
                 .HasForeignKey(d => d.Uid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_LoginInformationTable_UserInformationTable");

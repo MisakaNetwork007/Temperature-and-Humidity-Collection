@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Temperature_and_Humidity_Collection.Data;
+using Temperature_and_Humidity_Collection.Models;
 
 namespace Temperature_and_Humidity_Collection
 {
@@ -45,11 +47,49 @@ namespace Temperature_and_Humidity_Collection
                 }
                 if (!user.UserPassword.Equals(password))
                 {
+                    //LoginInformationTable li = new LoginInformationTable()
+                    //{
+                    //    Uid = StaticData.currentUser.Uid,
+                    //    Datetime = DateTime.Now,
+                    //    LoginOrLogout = true,
+                    //    Status = false,
+                    //    ErrorCode = (short)ErrorCode.PasswordError
+                    //};
+                    //OperationLogTable ol = new OperationLogTable()
+                    //{
+                    //    Uid = StaticData.currentUser.Uid,
+                    //    Datetime = DateTime.Now,
+                    //    OperationCode = (short)OperationCode.Login,
+                    //    Status = false,
+                    //    ErrorCode = (short)ErrorCode.PasswordError
+                    //};
+                    //LogManagent.Instance.UploadLoginInformation(li);
+                    //LogManagent.Instance.UploadOperationLog(ol);
+
                     MessageBox.Show("密码错误", "登录信息错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 StaticData.currentUser = user;
             }
+
+            LoginInformationTable l = new LoginInformationTable()
+            { 
+                Uid = StaticData.currentUser.Uid,
+                Datetime = DateTime.Now,
+                LoginOrLogout = true,
+                Status = true,
+                ErrorCode = (short)ErrorCode.None
+            };
+            OperationLogTable o = new OperationLogTable()
+            {
+                Uid = StaticData.currentUser.Uid,
+                Datetime = DateTime.Now,
+                OperationCode = (short)OperationCode.Login,
+                Status = true,
+                ErrorCode = (short)ErrorCode.None
+            };
+            LogManagent.Instance.UploadLoginInformation(l);
+            LogManagent.Instance.UploadOperationLog(o);
 
             var result = MessageBox.Show("登陆成功", "登录信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (result == DialogResult.OK)

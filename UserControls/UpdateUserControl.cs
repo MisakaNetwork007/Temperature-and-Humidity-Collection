@@ -89,7 +89,26 @@ namespace Temperature_and_Humidity_Collection.UserControls
                 if (user == null)
                 {
                     MessageBox.Show("用户不存在！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }else
+                }
+                else if(user.UserAccount == AccountTextBox.Text)
+                {
+                    OperationLogTable o = new OperationLogTable()
+                    {
+                        Uid = StaticData.currentUser.Uid,
+                        Datetime = DateTime.Now,
+                        OperationCode = (short)OperationCode.UpdateUser,
+                        Status = false,
+                        PUserAccount = user.UserAccount,
+                        PUserPassword = user.UserPassword,
+                        PUserName = user.UserName,
+                        PUserAccessLevel = user.UserAccessLevel,
+                        ErrorCode = (short)ErrorCode.PAccountError
+                    };
+                    LogManagent.Instance.UploadOperationLog(o);
+
+                    MessageBox.Show("用户账号已存在！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
                 {
                     user.UserAccount = AccountTextBox.Text;
                     user.UserPassword = PasswordTextBox.Text;
@@ -98,10 +117,39 @@ namespace Temperature_and_Humidity_Collection.UserControls
                     int changesCount = context.SaveChanges();
                     if (changesCount == 0)
                     {
+                        OperationLogTable o = new OperationLogTable()
+                        {
+                            Uid = StaticData.currentUser.Uid,
+                            Datetime = DateTime.Now,
+                            OperationCode = (short)OperationCode.UpdateUser,
+                            Status = false,
+                            PUserAccount = user.UserAccount,
+                            PUserPassword = user.UserPassword,
+                            PUserName = user.UserName,
+                            PUserAccessLevel = user.UserAccessLevel,
+                            ErrorCode = (short)ErrorCode.DBSaveChangesError
+                        };
+                        LogManagent.Instance.UploadOperationLog(o);
+
                         MessageBox.Show("更新失败！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
+                        OperationLogTable o = new OperationLogTable()
+                        {
+                            Uid = StaticData.currentUser.Uid,
+                            Datetime = DateTime.Now,
+                            OperationCode = (short)OperationCode.DeleteUser,
+                            Status = true,
+                            PUserAccount = user.UserAccount,
+                            PUserPassword = user.UserPassword,
+                            PUserName = user.UserName,
+                            PUserAccessLevel = user.UserAccessLevel,
+                            ErrorCode = (short)ErrorCode.None
+                        };
+                        LogManagent.Instance.UploadOperationLog(o);
+
+
                         var result = MessageBox.Show("更新成功！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (result == DialogResult.OK)
                         {

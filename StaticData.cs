@@ -46,21 +46,25 @@ namespace Temperature_and_Humidity_Collection
 
     public enum ErrorCode
     {
+        None = 100,
         AccountError = 101,  //登录账号错误
         PasswordError = 102,  //登录密码错误
         AccessLevelError = 201,  //权限不足
         PAccountError = 301,  //被操作者账号已存在
         DBTableError = 501,  //数据表错误
-        DBConncetError = 502   //数据库连接错误
+        DBConncetError = 502,   //数据库连接错误
+        DBSaveChangesError = 503    //保存更改错误
     }
 
     public enum OperationCode
     {
-        MonitorData = 100,  //监控数据，主界面
-        InspectData = 101,  //检查数据，往期数据
-        AddUser = 201,  //添加用户
-        UpdateUser = 202,  //更新用户
-        DeleteUser = 203   //删除用户
+        Login = 100,    //登录
+        Logout = 101,   //登出
+        MonitorData = 200,  //监控数据，主界面
+        InspectData = 201,  //检查数据，往期数据
+        AddUser = 301,  //添加用户
+        UpdateUser = 302,  //更新用户
+        DeleteUser = 303   //删除用户
     }
 
     /// <summary>

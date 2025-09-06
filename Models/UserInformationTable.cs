@@ -15,5 +15,7 @@ public partial class UserInformationTable
 
     public byte UserAccessLevel { get; set; }
 
+    public virtual ICollection<LoginInformationTable> LoginInformationTables { get; set; } = new List<LoginInformationTable>();
+
     public virtual ICollection<OperationLogTable> OperationLogTables { get; set; } = new List<OperationLogTable>();
 }

@@ -5,6 +5,8 @@ namespace Temperature_and_Humidity_Collection.Models;
 
 public partial class LoginInformationTable
 {
+    public int Id { get; set; }
+
     public int Uid { get; set; }
 
     public DateTime Datetime { get; set; }

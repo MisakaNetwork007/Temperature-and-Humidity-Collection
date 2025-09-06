@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using Temperature_and_Humidity_Collection.Data;
+using Temperature_and_Humidity_Collection.Models;
+using Timer = System.Windows.Forms.Timer;
 
 namespace Temperature_and_Humidity_Collection.UserControls
 {
     public partial class NowDataControl : UserControl
     {
-
+        private Timer _minuteTimer;
         public NowDataControl()
         {
             InitializeComponent();
+            InitializeTimer();
         }
 
         private void NowDataControl_Load(object sender, EventArgs e)
@@ -24,6 +27,50 @@ namespace Temperature_and_Humidity_Collection.UserControls
             Thread thread = new Thread(new ThreadStart(ReadData));
             //thread.IsBackground = true;
             thread.Start();
+        }
+
+        private void InitializeTimer()
+        {
+            // 创建定时器，每分钟检查一次
+            _minuteTimer = new Timer();
+            _minuteTimer.Interval = 60000; // 60秒
+            _minuteTimer.Tick += MinuteTimer_Tick;
+            _minuteTimer.Start();
+        }
+
+        private void MinuteTimer_Tick(object? sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(TemperatureTextBox1.Text) || string.IsNullOrEmpty(TemperatureTextBox2.Text)
+                || string.IsNullOrEmpty(TemperatureTextBox3.Text) || string.IsNullOrEmpty(TemperatureTextBox4.Text)
+                || string.IsNullOrEmpty(HumidityTextBox1.Text) || string.IsNullOrEmpty(HumidityTextBox2.Text)
+                || string.IsNullOrEmpty(HumidityTextBox3.Text) || string.IsNullOrEmpty(HumidityTextBox4.Text)
+                ) return;
+            using(var context = new MyDbContext())
+            {
+                float[] temperatureData = new float[]
+                {
+                    float.Parse(TemperatureTextBox1.Text), float.Parse(TemperatureTextBox2.Text),
+                    float.Parse(TemperatureTextBox3.Text), float.Parse(TemperatureTextBox4.Text)
+                };
+
+                float[] humidityData = new float[]
+                {
+                    float.Parse(HumidityTextBox1.Text), float.Parse(HumidityTextBox2.Text),
+                    float.Parse(HumidityTextBox3.Text), float.Parse(HumidityTextBox4.Text)
+                };
+                for (int i = 0; i < 4; i++)
+                {
+                    var data = new DataTable()
+                    {
+                        SlaveAddress = (i+1).ToString(),
+                        Temperature = temperatureData[i],
+                        Humidity = humidityData[i],
+                        Datetime = DateTime.Now
+                    };
+                    context.DataTables.Add(data);
+                }
+                context.SaveChanges();
+            }
         }
 
         private void ReadData()
@@ -97,6 +144,8 @@ namespace Temperature_and_Humidity_Collection.UserControls
             finally
             {
                 m.Dispose();
+                _minuteTimer.Stop();
+                _minuteTimer.Dispose();
             }
 
         }

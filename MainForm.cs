@@ -1,3 +1,4 @@
+using Temperature_and_Humidity_Collection.Models;
 using Temperature_and_Humidity_Collection.UserControls;
 using Timer = System.Windows.Forms.Timer;
 
@@ -27,19 +28,8 @@ namespace Temperature_and_Humidity_Collection
         private void InitForm()
         {
             CurUserLabel.Text = "当前用户：" + StaticData.currentUser.UserName;
-            switch (StaticData.currentUser.UserAccessLevel)
-            {
-                case 1:
-                    IdentityLabel.Text = "身份：组员";
-                    break;
-                case 2:
-                    IdentityLabel.Text = "身份：组长";
-                    break;
-                case 3:
-                    IdentityLabel.Text = "身份：管理员";
-                    break;
-            }
-
+            IdentityLabel.Text = "身份：" + StaticData.GetIdentityName(StaticData.currentUser.UserAccessLevel);
+            
             string timeFormat = string.Concat("yyyy年MM月dd日", '\n', "dddd", '\n', "HH:mm");
             CurTimeLabel.Text = DateTime.Now.ToString(timeFormat);
 
@@ -47,6 +37,16 @@ namespace Temperature_and_Humidity_Collection
             this.Controls.Add(_nowDataControl);
             _nowDataControl.Location = new Point(55, 134);
             _currentInterface = CurrentInterface.NowData;
+
+            OperationLogTable o = new OperationLogTable()
+            { 
+                Uid = StaticData.currentUser.Uid,
+                Datetime = DateTime.Now,
+                OperationCode = (short)OperationCode.MonitorData,
+                Status = true,
+                ErrorCode = (short)ErrorCode.None
+            };
+            LogManagent.Instance.UploadOperationLog(o);
         }
 
         private void InitializeTimer()
@@ -74,6 +74,26 @@ namespace Temperature_and_Humidity_Collection
 
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
+            LoginInformationTable l = new LoginInformationTable()
+            {
+                Uid = StaticData.currentUser.Uid,
+                Datetime = DateTime.Now,
+                LoginOrLogout = false,
+                Status = true,
+                ErrorCode = (short)ErrorCode.None
+            };
+
+            OperationLogTable o = new OperationLogTable()
+            {
+                Uid = StaticData.currentUser.Uid,
+                Datetime = DateTime.Now,
+                OperationCode = (short)OperationCode.Logout,
+                Status = true,
+                ErrorCode = (short)ErrorCode.None
+            };
+            LogManagent.Instance.UploadLoginInformation(l);
+            LogManagent.Instance.UploadOperationLog(o);
+
             StaticData.uiSyncContext = null;
             
             _minuteTimer.Stop();
@@ -105,6 +125,16 @@ namespace Temperature_and_Humidity_Collection
                 _nowDataControl.Visible = true;
             }
             _currentInterface = CurrentInterface.NowData;
+
+            OperationLogTable o = new OperationLogTable()
+            {
+                Uid = StaticData.currentUser.Uid,
+                Datetime = DateTime.Now,
+                OperationCode = (short)OperationCode.MonitorData,
+                Status = true,
+                ErrorCode = (short)ErrorCode.None
+            };
+            LogManagent.Instance.UploadOperationLog(o);
         }
 
         private void OnShowHistorical_Click(object sender, EventArgs e)
@@ -133,6 +163,16 @@ namespace Temperature_and_Humidity_Collection
                 _historicalTrendControl.Visible = true;
             }
             _currentInterface = CurrentInterface.HistoricalTrend;
+
+            OperationLogTable o = new OperationLogTable()
+            {
+                Uid = StaticData.currentUser.Uid,
+                Datetime = DateTime.Now,
+                OperationCode = (short)OperationCode.InspectData,
+                Status = true,
+                ErrorCode = (short)ErrorCode.None
+            };
+            LogManagent.Instance.UploadOperationLog(o);
         }
 
         private void OnShowLog_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -94,6 +95,16 @@ namespace Temperature_and_Humidity_Collection.UserControls
         {
             if(StaticData.currentUser.UserAccessLevel < 2)
             {
+                OperationLogTable o = new OperationLogTable()
+                {
+                    Uid = StaticData.currentUser.Uid,
+                    Datetime = DateTime.Now,
+                    OperationCode = (short)OperationCode.AddUser,
+                    Status = false,
+                    ErrorCode = (short)ErrorCode.AccessLevelError
+                };
+                LogManagent.Instance.UploadOperationLog(o);
+
                 MessageBox.Show("权限不足！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -109,6 +120,16 @@ namespace Temperature_and_Humidity_Collection.UserControls
         {
             if (StaticData.currentUser.UserAccessLevel < 2)
             {
+                OperationLogTable o = new OperationLogTable()
+                {
+                    Uid = StaticData.currentUser.Uid,
+                    Datetime = DateTime.Now,
+                    OperationCode = (short)OperationCode.UpdateUser,
+                    Status = false,
+                    ErrorCode = (short)ErrorCode.AccessLevelError
+                };
+                LogManagent.Instance.UploadOperationLog(o);
+
                 MessageBox.Show("权限不足！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -124,6 +145,16 @@ namespace Temperature_and_Humidity_Collection.UserControls
         {
             if (StaticData.currentUser.UserAccessLevel < 3)
             {
+                OperationLogTable o = new OperationLogTable()
+                {
+                    Uid = StaticData.currentUser.Uid,
+                    Datetime = DateTime.Now,
+                    OperationCode = (short)OperationCode.DeleteUser,
+                    Status = false,
+                    ErrorCode = (short)ErrorCode.AccessLevelError
+                };
+                LogManagent.Instance.UploadOperationLog(o);
+
                 MessageBox.Show("权限不足！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }

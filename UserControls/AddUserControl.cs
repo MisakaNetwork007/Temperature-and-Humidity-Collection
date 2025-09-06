@@ -70,6 +70,20 @@ namespace Temperature_and_Humidity_Collection.UserControls
             {
                 if(context.UserInformationTables.FirstOrDefault(u=>u.UserAccount == user.UserAccount) != null)
                 {
+                    OperationLogTable o = new OperationLogTable()
+                    {
+                        Uid = StaticData.currentUser.Uid,
+                        Datetime = DateTime.Now,
+                        OperationCode = (short)OperationCode.AddUser,
+                        Status = false,
+                        PUserAccount = user.UserAccount,
+                        PUserPassword = user.UserPassword,
+                        PUserName = user.UserName,
+                        PUserAccessLevel = user.UserAccessLevel,
+                        ErrorCode = (short)ErrorCode.PAccountError
+                    };
+                    LogManagent.Instance.UploadOperationLog(o);
+
                     MessageBox.Show("账号已存在！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -77,9 +91,37 @@ namespace Temperature_and_Humidity_Collection.UserControls
                 int changesCount = context.SaveChanges();
                 if(changesCount == 0)
                 {
+                    OperationLogTable o = new OperationLogTable()
+                    {
+                        Uid = StaticData.currentUser.Uid,
+                        Datetime = DateTime.Now,
+                        OperationCode = (short)OperationCode.AddUser,
+                        Status = false,
+                        PUserAccount = user.UserAccount,
+                        PUserPassword = user.UserPassword,
+                        PUserName = user.UserName,
+                        PUserAccessLevel = user.UserAccessLevel,
+                        ErrorCode = (short)ErrorCode.DBSaveChangesError
+                    };
+                    LogManagent.Instance.UploadOperationLog(o);
+
                     MessageBox.Show("保存失败！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }else
                 {
+                    OperationLogTable o = new OperationLogTable()
+                    {
+                        Uid = StaticData.currentUser.Uid,
+                        Datetime = DateTime.Now,
+                        OperationCode = (short)OperationCode.AddUser,
+                        Status = true,
+                        PUserAccount = user.UserAccount,
+                        PUserPassword = user.UserPassword,
+                        PUserName = user.UserName,
+                        PUserAccessLevel = user.UserAccessLevel,
+                        ErrorCode = (short)ErrorCode.None
+                    };
+                    LogManagent.Instance.UploadOperationLog(o);
+
                     var result = MessageBox.Show("保存成功！", "操作提醒", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if(result == DialogResult.OK)
                     {
